@@ -18,7 +18,7 @@ function handleSubmit(event) {
     return;
   }
 
-  fetch("https://script.google.com/macros/s/AKfycbwHk76hT3sNrPWFGc9PRYMOvbiN9F71pX3MdFYSJFohCYdsh723Giup54k67-xXDya5/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzUKjqHPDI5vCkoV03qMxgZMikjIqD61EiQXlBO-0nD_qmQD_NJdp3adn6_yhtWvY6c9w/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

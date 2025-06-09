@@ -19,16 +19,14 @@ function handleSubmit(event) {
   }
 
   fetch("https://script.google.com/macros/s/AKfycbzUKjqHPDI5vCkoV03qMxgZMikjIqD61EiQXlBO-0nD_qmQD_NJdp3adn6_yhtWvY6c9w/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      fio: fio,
-      telegramId: telegramId,
-      isOnline: true
+  method: "POST",
+  body: new URLSearchParams({
+    fio: fio,
+    telegramId: telegramId,
+    isOnline: true
     })
   })
+
     .then((res) => res.text())
     .then((msg) => {
       if (msg === "OK") {

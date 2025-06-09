@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <title>Статус сотрудника</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .form input[type="text"] {
+      font-size: 18px;
+      padding: 10px;
+    }
+
+    .form button {
+      background-color: #4a3aff;
+      color: white;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .form label {
+      font-size: 18px;
+    }
+
+    .form input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <form class="form" onsubmit="handleSubmit(event)">
+    <input type="text" name="fio" placeholder="Введите ФИО" required />
+    <div class="checkbox-group">
+      <input type="checkbox" id="onlineCheck" name="isOnline" required />
+      <label for="onlineCheck">Стать онлайн</label>
+    </div>
+    <button type="submit">Подтвердить</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>

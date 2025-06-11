@@ -10,13 +10,20 @@ function handleSubmit(event) {
   }
 
   const telegramId = user.id;
-  const form = event.target;
-  const fio = form.fio.value.trim();
+  const isOnline = document.getElementById("onlineCheck").checked;
+  const isOffline = document.getElementById("offlineCheck").checked;
 
-  if (!fio) {
-    alert("Введите ФИО");
+  if (!isOnline && !isOffline) {
+    alert("Выберите действие: Онлайн или Оффлайн.");
     return;
   }
+
+  if (isOnline && isOffline) {
+    alert("Выберите только один вариант: Онлайн или Оффлайн.");
+    return;
+  }
+
+  const status = isOnline ? "online" : "offline";
 
   fetch("https://script.google.com/macros/s/AKfycbzUKjqHPDI5vCkoV03qMxgZMikjIqD61EiQXlBO-0nD_qmQD_NJdp3adn6_yhtWvY6c9w/exec", {
     method: "POST",
@@ -24,19 +31,14 @@ function handleSubmit(event) {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
-      fio: fio,
       telegramId: telegramId,
-      isOnline: true
+      status: status
     }),
   })
     .then((res) => res.text())
     .then((msg) => {
-      if (msg === "OK") {
-        alert("Вы отмечены как Онлайн!");
-        tg.close();
-      } else {
-        alert("Ошибка: " + msg);
-      }
+      alert(msg);
+      tg.close();
     })
     .catch((err) => {
       alert("Ошибка при отправке данных.");

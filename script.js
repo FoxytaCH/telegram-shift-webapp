@@ -31,7 +31,7 @@ function handleSubmit(event) {
       tg.close();
     })
     .catch((err) => {
-      alert("Ошибка при отправке данных.");
-      console.error(err);
-    });
+      alert("Ошибка при отправке данных: " + err.message);
+      console.error("Ошибка при fetch:", err);
+      });
 }

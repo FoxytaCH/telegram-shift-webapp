@@ -23,11 +23,6 @@
       max-width: 400px;
     }
 
-    .form input[type="text"] {
-      font-size: 18px;
-      padding: 10px;
-    }
-
     .form button {
       background-color: #4a3aff;
       color: white;
@@ -38,6 +33,12 @@
       cursor: pointer;
     }
 
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .form label {
       font-size: 18px;
     }
@@ -45,20 +46,17 @@
     .form input[type="checkbox"] {
       transform: scale(1.2);
     }
-
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
   </style>
 </head>
 <body>
   <form class="form" onsubmit="handleSubmit(event)">
-    <input type="text" name="fio" placeholder="Введите ФИО" required />
     <div class="checkbox-group">
-      <input type="checkbox" id="onlineCheck" name="isOnline" required />
+      <input type="checkbox" id="onlineCheck" name="status" value="online" />
       <label for="onlineCheck">Стать онлайн</label>
+    </div>
+    <div class="checkbox-group">
+      <input type="checkbox" id="offlineCheck" name="status" value="offline" />
+      <label for="offlineCheck">Выйти в оффлайн</label>
     </div>
     <button type="submit">Подтвердить</button>
   </form>

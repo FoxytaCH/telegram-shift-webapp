@@ -1,47 +1,59 @@
-function handleSubmit(event) {
-  event.preventDefault();
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <title>Статус смены</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
 
-  const tg = window.Telegram.WebApp;
-  const user = tg.initDataUnsafe?.user;
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+    }
 
-  if (!user || !user.id) {
-    alert("WebApp запущен вне Telegram. Пожалуйста, откройте его из бота.");
-    return;
-  }
+    .form label {
+      font-size: 16px;
+    }
 
-  const telegramId = user.id;
-  const isOnline = document.getElementById("onlineCheck").checked;
-  const isOffline = document.getElementById("offlineCheck").checked;
+    .form input[type="time"] {
+      padding: 8px;
+    }
 
-  if (!isOnline && !isOffline) {
-    alert("Выберите действие: Онлайн или Оффлайн.");
-    return;
-  }
-
-  if (isOnline && isOffline) {
-    alert("Выберите только один вариант: Онлайн или Оффлайн.");
-    return;
-  }
-
-  const status = isOnline ? "online" : "offline";
-
-  fetch("https://script.google.com/macros/s/AKfycbzUKjqHPDI5vCkoV03qMxgZMikjIqD61EiQXlBO-0nD_qmQD_NJdp3adn6_yhtWvY6c9w/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      telegramId: telegramId,
-      status: status
-    }),
-  })
-    .then((res) => res.text())
-    .then((msg) => {
-      alert(msg);
-      tg.close();
-    })
-    .catch((err) => {
-      alert("Ошибка при отправке данных.");
-      console.error(err);
-    });
-}
+    .form button {
+      background-color: #4a3aff;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <form class="form" onsubmit="handleSubmit(event)">
+    <label>
+      <input type="radio" name="status" value="Онлайн" required />
+      Стать Онлайн
+    </label>
+    <label>
+      <input type="radio" name="status" value="Оффлайн" />
+      Выйти в Оффлайн
+    </label>
+    <label>
+      <input type="radio" name="status" value="Перерыв" />
+      Выйти на перерыв
+    </label>
+    <input type="time" name="breakTime" />
+    <button type="submit">Подтвердить</button>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>

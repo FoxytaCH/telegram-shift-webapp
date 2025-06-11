@@ -12,18 +12,14 @@ function handleSubmit(event) {
   const status = form.status.value;
   const breakTime = form.breakTime.value;
 
-  const payload = {
-    telegramId: user.id,
-    status: status,
-    breakTime: breakTime,
-  };
+  const payload = new URLSearchParams();
+  payload.append("telegramId", user.id);
+  payload.append("status", status);
+  payload.append("breakTime", breakTime);
 
   fetch("https://script.google.com/macros/s/AKfycbx68IARoYD35pifJzrGQo3NQE8vOpM-2Y0b35xsL8KXzjGa3piICzygrhqBYWb1VRgZ7Q/exec", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
+    body: payload,
   })
     .then((res) => res.text())
     .then((msg) => {
@@ -33,5 +29,5 @@ function handleSubmit(event) {
     .catch((err) => {
       alert("Ошибка при отправке данных: " + err.message);
       console.error("Ошибка при fetch:", err);
-      });
+    });
 }

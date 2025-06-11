@@ -4,63 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <title>Статус сотрудника</title>
+  <title>Статус смены</title>
   <style>
     body {
-      background-color: white;
       font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       padding: 20px;
     }
 
     .form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      width: 100%;
+      gap: 15px;
       max-width: 400px;
+    }
+
+    .form label {
+      font-size: 16px;
+    }
+
+    .form input[type="time"] {
+      padding: 8px;
     }
 
     .form button {
       background-color: #4a3aff;
       color: white;
       padding: 12px;
-      font-size: 18px;
+      font-size: 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-    }
-
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .form label {
-      font-size: 18px;
-    }
-
-    .form input[type="checkbox"] {
-      transform: scale(1.2);
     }
   </style>
 </head>
 <body>
   <form class="form" onsubmit="handleSubmit(event)">
-    <div class="checkbox-group">
-      <input type="checkbox" id="onlineCheck" name="status" value="online" />
-      <label for="onlineCheck">Стать онлайн</label>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="offlineCheck" name="status" value="offline" />
-      <label for="offlineCheck">Выйти в оффлайн</label>
-    </div>
+    <label>
+      <input type="radio" name="status" value="Онлайн" required />
+      Стать Онлайн
+    </label>
+    <label>
+      <input type="radio" name="status" value="Оффлайн" />
+      Выйти в Оффлайн
+    </label>
+    <label>
+      <input type="radio" name="status" value="Перерыв" />
+      Выйти на перерыв
+    </label>
+    <input type="time" name="breakTime" />
     <button type="submit">Подтвердить</button>
   </form>
-
   <script src="script.js"></script>
 </body>
 </html>
